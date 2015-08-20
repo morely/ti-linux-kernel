@@ -2,6 +2,7 @@
 # Makefile for the Linux Wireless network device drivers.
 #
 
+obj-$(CONFIG_RTL8188EU) += rtl8188eu/rtl8188EUS_linux_v4.3.0.8_13968.20150417/
 obj-$(CONFIG_IPW2100) += ipw2x00/
 obj-$(CONFIG_IPW2200) += ipw2x00/
 

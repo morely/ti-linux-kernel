@@ -77,6 +77,15 @@
 		};
 	};
 
+     	watchdog {
+		pinctrl-name = "default";
+		pinctrl-0 = <&wdt_wdi_pinmux>;
+        	compatible = "linux,wdt-gpio";
+        	gpios = <&gpio3 8 GPIO_ACTIVE_HIGH>;
+        	hw_algo = "toggle";
+        	hw_margin_ms = <1600>; 
+    	};
+
 	vmmcsd_fixed: fixedregulator@0 {
 		compatible = "regulator-fixed";
 		regulator-name = "vmmcsd_fixed";
@@ -99,6 +108,12 @@
 			0x02C (PIN_OUTPUT_PULLUP | MUX_MODE7)	/*gpmcad9.gpio0_27 G1*/
 		>;
 
+	};
+
+	wdt_wdi_pinmux: wdt_wdi_pinmux{
+		pinctl-single,pins = <
+			0X1E8 (PIN_OUTPUT_PULLUP | MUX_MODE7) 	/*emu1.gpio3_8*/
+		>;
 	};
 
 	user_leds_default: user_leds_default {
@@ -224,6 +239,10 @@
 			0x1c (PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_ad7.mmc1_dat7 */
 		>;
 	};
+};
+
+&pruss {
+	status = "disable";
 };
 
 &uart0 {
